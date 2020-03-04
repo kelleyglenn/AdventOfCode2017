@@ -1,8 +1,7 @@
 package day9
 
 import org.scalatest.flatspec.AnyFlatSpec
-
-import scala.io.{BufferedSource, Source}
+import util.SetupPuzzleData
 
 class StreamProcessingTest extends AnyFlatSpec {
   behavior of "scoreWithGarbageCount"
@@ -31,11 +30,4 @@ class StreamProcessingTest extends AnyFlatSpec {
   it should "solve the second puzzle" in new SetupPuzzleData("input") {
     assert(StreamProcessing.scoreWithGarbageCount(lines.head)._2 == 6369)
   }
-
-  class SetupPuzzleData(name: String) {
-    val bufferedSource: BufferedSource =
-      Source.fromURL(getClass.getResource("/" + getClass.getPackage.getName + "/" + name + ".txt"))
-    val lines: List[String] = bufferedSource.getLines.toList
-  }
-
 }

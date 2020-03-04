@@ -1,8 +1,7 @@
 package day7
 
 import org.scalatest.flatspec.AnyFlatSpec
-
-import scala.io.{BufferedSource, Source}
+import util.SetupPuzzleData
 
 class TowersTest extends AnyFlatSpec {
   behavior of "nameOfBottomProgram"
@@ -19,11 +18,4 @@ class TowersTest extends AnyFlatSpec {
   it should "solve the second puzzle" in new SetupPuzzleData("input") {
     assert(Towers.correctedWeightOfOffBalanceProgram(lines) == 193)
   }
-
-  class SetupPuzzleData(name: String) {
-    val bufferedSource: BufferedSource =
-      Source.fromURL(getClass.getResource("/" + getClass.getPackage.getName + "/" + name + ".txt"))
-    val lines: List[String] = bufferedSource.getLines.toList
-  }
-
 }

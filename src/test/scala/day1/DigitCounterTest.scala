@@ -1,8 +1,7 @@
 package day1
 
 import org.scalatest.flatspec.AnyFlatSpec
-
-import scala.io.{BufferedSource, Source}
+import util.SetupPuzzleData
 
 class DigitCounterTest extends AnyFlatSpec {
   behavior of "sumRepeatsNext"
@@ -20,16 +19,9 @@ class DigitCounterTest extends AnyFlatSpec {
     assert(DigitCounter.sumRepeatsOpposite("12131415") == 4)
   }
   it should "solve the first puzzle" in new SetupPuzzleData("input") {
-    assert(DigitCounter.sumRepeatsNext(input) == 1049)
+    assert(DigitCounter.sumRepeatsNext(lines.head) == 1049)
   }
   it should "solve the second puzzle" in new SetupPuzzleData("input") {
-    assert(DigitCounter.sumRepeatsOpposite(input) == 1508)
+    assert(DigitCounter.sumRepeatsOpposite(lines.head) == 1508)
   }
-
-  class SetupPuzzleData(name: String) {
-    val bufferedSource: BufferedSource =
-      Source.fromURL(getClass.getResource("/day1/" + name + ".txt"))
-    val input: String = bufferedSource.getLines().next()
-  }
-
 }

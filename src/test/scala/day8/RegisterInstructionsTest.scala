@@ -1,8 +1,7 @@
 package day8
 
 import org.scalatest.flatspec.AnyFlatSpec
-
-import scala.io.{BufferedSource, Source}
+import util.SetupPuzzleData
 
 class RegisterInstructionsTest extends AnyFlatSpec {
   behavior of "run"
@@ -26,11 +25,4 @@ class RegisterInstructionsTest extends AnyFlatSpec {
     val highest: Int = ri.run()._2
     assert(highest == 7184)
   }
-
-  class SetupPuzzleData(name: String) {
-    val bufferedSource: BufferedSource =
-      Source.fromURL(getClass.getResource("/" + getClass.getPackage.getName + "/" + name + ".txt"))
-    val lines: List[String] = bufferedSource.getLines.toList
-  }
-
 }
