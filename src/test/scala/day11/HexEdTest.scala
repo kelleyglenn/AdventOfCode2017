@@ -4,14 +4,14 @@ import org.scalatest.flatspec.AnyFlatSpec
 import util.SetupPuzzleData
 
 class HexEdTest extends AnyFlatSpec {
-  behavior of "equivalentPath"
+  behavior of "maxAndFinalDistance"
   it should "handle the examples" in {
-    assert(HexEd.equivalentPath(HexEd.parsePath("ne,ne,ne")) == HexEd.parsePath("ne,ne,ne"))
-    assert(HexEd.equivalentPath(HexEd.parsePath("ne,ne,sw,sw")) == HexEd.parsePath(""))
-    assert(HexEd.equivalentPath(HexEd.parsePath("ne,ne,s,s")) == HexEd.parsePath("se,se"))
-    assert(HexEd.equivalentPath(HexEd.parsePath("se,sw,se,sw,sw")).sorted == HexEd.parsePath("s,s,sw"))
+    assert(HexEd.maxAndFinalDistance(HexEd.parsePath("ne,ne,ne")) == (3, 3))
+    assert(HexEd.maxAndFinalDistance(HexEd.parsePath("ne,ne,sw,sw")) == (2, 0))
+    assert(HexEd.maxAndFinalDistance(HexEd.parsePath("ne,ne,s,s")) == (2, 2))
+    assert(HexEd.maxAndFinalDistance(HexEd.parsePath("se,sw,se,sw,sw")) == (3, 3))
   }
-  it should "solve the puzzle" in new SetupPuzzleData("input") {
-    assert(HexEd.equivalentPath(HexEd.parsePath(lines.head)).length == 794)
+  it should "solve the first and second puzzle" in new SetupPuzzleData("input") {
+    assert(HexEd.maxAndFinalDistance(HexEd.parsePath(lines.head)) == (1524, 794))
   }
 }
