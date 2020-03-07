@@ -22,12 +22,12 @@ class KnotHashTest extends AnyFlatSpec {
   }
   behavior of "hash"
   it should "handle the second set of examples" in {
-    assert(KnotHash.hash(256, "") == "a2582a3a0e66e6e86e3812dcb672a272")
-    assert(KnotHash.hash(256, "AoC 2017") == "33efeb34ea91902bb2f59c9920caa6cd")
-    assert(KnotHash.hash(256, "1,2,3") == "3efbe78a8d82f29979031a4aa0b16a9d")
-    assert(KnotHash.hash(256, "1,2,4") == "63960835bcdc130f0b66d7ff4f6a5a8e")
+    assert(KnotHash.hash("") == "a2582a3a0e66e6e86e3812dcb672a272")
+    assert(KnotHash.hash("AoC 2017") == "33efeb34ea91902bb2f59c9920caa6cd")
+    assert(KnotHash.hash("1,2,3") == "3efbe78a8d82f29979031a4aa0b16a9d")
+    assert(KnotHash.hash("1,2,4") == "63960835bcdc130f0b66d7ff4f6a5a8e")
   }
   it should "solve the second puzzle" in {
-    assert(KnotHash.hash(256, "102,255,99,252,200,24,219,57,103,2,226,254,1,0,69,216") == "44f4befb0f303c0bafd085f97741d51d")
+    assert(KnotHash.hash("102,255,99,252,200,24,219,57,103,2,226,254,1,0,69,216") == "44f4befb0f303c0bafd085f97741d51d")
   }
 }

@@ -1,7 +1,7 @@
 package day10
 
 object KnotHash {
-  def hash(count: Int, swapsString: String): String = {
+  def hash(swapsString: String, count: Int = 256): String = {
     val swaps: List[Int] = swapsString.map((c: Char) => c.toInt).toList ++ List(17, 31, 73, 47, 23)
     val numbers = new LoopedNumbers(count)
     (1 to 64).foreach { _: Int =>
