@@ -14,4 +14,16 @@ class DiskDefragTest extends AnyFlatSpec {
   it should "solve the first puzzle" in {
     assert(DiskDefrag.squaresUsed("vbqugkhl") == 8148)
   }
+  behavior of "usedSquaresToUsedNeighbors"
+  it should "handle the example" in {
+    val map = DiskDefrag.usedSquaresToUsedNeighbors("flqrgnkx")
+    assert(map((0, 0)) == Set((0, 1)))
+  }
+  behavior of "regionCount"
+  it should "handle the example" in {
+    assert(DiskDefrag.regionCount("flqrgnkx") == 1242)
+  }
+  it should "solve the second puzzle" in {
+    assert(DiskDefrag.regionCount("vbqugkhl") == 1180)
+  }
 }
