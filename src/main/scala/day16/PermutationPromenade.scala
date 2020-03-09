@@ -1,5 +1,8 @@
 package day16
 
+import scala.collection.mutable
+import scala.collection.mutable.ListBuffer
+
 object PermutationPromenade {
   def dance(startingPrograms: IterableOnce[Char], moves: IterableOnce[String]): IterableOnce[Char] = {
     var programs = startingPrograms.iterator.toArray
@@ -26,5 +29,32 @@ object PermutationPromenade {
       }
     }
     programs
+  }
+
+  def danceXslow(startingPrograms: IterableOnce[Char], moves: IterableOnce[String], x: Int): IterableOnce[Char] = {
+    var curPrograms = startingPrograms
+    (1 to x).foreach { _ =>
+      curPrograms = dance(curPrograms, moves)
+    }
+    curPrograms
+  }
+
+  def danceX(startingPrograms: IterableOnce[Char], moves: IterableOnce[String], x: Int): IterableOnce[Char] = {
+    var curPrograms = startingPrograms
+    val resultsSet: mutable.Set[IterableOnce[Char]] = mutable.Set.empty
+    val resultsList: ListBuffer[IterableOnce[Char]] = ListBuffer[IterableOnce[Char]]()
+    (1 to x).foreach { _ =>
+      curPrograms = dance(curPrograms, moves)
+      if (resultsSet.contains(curPrograms)) {
+        val elementsBeforeLoop = resultsList.indexOf(curPrograms)
+        val sizeOfLoop = resultsList.size - elementsBeforeLoop
+        val indexOfElementAtX = (x - elementsBeforeLoop) % sizeOfLoop + elementsBeforeLoop - 1
+        return resultsList(if (indexOfElementAtX >= 0) indexOfElementAtX else indexOfElementAtX + resultsList.size)
+      } else {
+        resultsSet += curPrograms
+        resultsList += curPrograms
+      }
+    }
+    curPrograms
   }
 }
