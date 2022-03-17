@@ -37,16 +37,15 @@ object HexEd {
     type Direction = Value
 
     val NW: HexDiffs = HexDiffs(1, 0, 0)
-
-    import scala.language.implicitConversions
-
-    implicit def valueToDirectionVal(x: Value): HexDiffs = x.asInstanceOf[HexDiffs]
-
     val SE: HexDiffs = HexDiffs(-1, 0, 0)
     val N: HexDiffs = HexDiffs(0, 1, 0)
     val S: HexDiffs = HexDiffs(0, -1, 0)
     val NE: HexDiffs = HexDiffs(0, 0, 1)
     val SW: HexDiffs = HexDiffs(0, 0, -1)
+
+    import scala.language.implicitConversions
+
+    implicit def valueToDirectionVal(x: Value): HexDiffs = x.asInstanceOf[HexDiffs]
 
     protected case class HexDiffs(nwDiff: Int, nDiff: Int, neDiff: Int) extends super.Val
 
